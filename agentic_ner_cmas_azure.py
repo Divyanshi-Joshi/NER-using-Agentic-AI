@@ -1,11 +1,3 @@
-"""
-Architecture:
-1. Self-Annotator Agent: Generates self-annotated data from unlabeled corpus
-2. TRF Extractor Agent: Identifies Type-Related Features (contextual correlations)
-3. Demonstration Discriminator Agent: Evaluates helpfulness of demonstrations
-4. Overall Predictor Agent: Final NER predictions with self-consistency
-"""
-
 import os
 import json
 import re
