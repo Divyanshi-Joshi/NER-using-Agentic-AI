@@ -7,9 +7,7 @@
 ![Python Version](https://img.shields.io/badge/Python-3.8%2B-blue)
 ![LangGraph](https://img.shields.io/badge/LangGraph-0.0.64-green)
 ![Azure OpenAI](https://img.shields.io/badge/Azure-OpenAI-blue)
-![License](https://img.shields.io/badge/License-MIT-yellow)
 
-[Overview](#overview) • [Features](#features) • [Quick Start](#quick-start) • [Architecture](#architecture) • [Research](#research)
 
 </div>
 
@@ -213,7 +211,7 @@ for method, result in results.items():
 
 ---
 
-## Research & Methodology
+## Methodology
 
 ### Agent 1: Corpus Annotation with Self-Consistency
 
@@ -349,45 +347,12 @@ agentic-ner/
 ├── LICENSE                            # MIT License
 ├── agentic_ner_cmas_azure.py         # Main NER implementation
 ├── comparison_script.py                # Benchmark against other methods
-├── Comprehensive_NER_Research_Report.md  # Detailed research documentation
+├── Comprehensive_NER_Report.md  # Detailed documentation
 └── PRESENTATION.html                   # Visual presentation
 ```
 
 ---
 
-## Security Considerations
-
-### ✅ What We Do Right
-
-1. **Environment-Based Credentials**: All API keys loaded from `.env` (never hardcoded)
-2. **Git Protection**: `.gitignore` prevents credential leaks
-3. **Example Template**: `.env.example` shows structure without real credentials
-4. **Secure Import**: `config.py` validates and sanitizes configuration
-
-### ⚠️ Important Security Notes
-
-**NEVER commit `.env` file to GitHub!**
-
-```bash
-# Good practices:
-echo ".env" >> .gitignore
-git rm --cached .env  # If already committed
-git commit -m "Remove .env from tracking"
-
-# Always use .env.example
-cp .env.example .env
-# Edit .env with REAL credentials
-# .env is now ignored by git
-```
-
-### Compliance Features
-
-- ✅ Designed for HIPAA (healthcare data)
-- ✅ Designed for PCI DSS (payment data)
-- ✅ No sensitive data in logs
-- ✅ Azure native (enterprise security)
-
----
 
 ## Usage Examples
 
@@ -431,97 +396,3 @@ for entity in result["predictions"]:
 
 ---
 
-## Troubleshooting
-
-### Issue: "Missing AZURE_OPENAI_API_KEY"
-
-**Solution**: Ensure `.env` file exists and contains valid credentials:
-```bash
-cp .env.example .env
-# Edit .env with your Azure OpenAI credentials
-```
-
-### Issue: "Connection error to Azure endpoint"
-
-**Solution**: Verify your endpoint URL format:
-```
-✓ Correct: https://my-resource.openai.azure.com/
-✗ Wrong:   https://my-resource.openai.azure.com (missing trailing slash)
-```
-
-### Issue: "Embedding API version mismatch"
-
-**Solution**: Ensure embedding API version differs from chat:
-```env
-AZURE_API_VERSION=2025-01-01-preview           # Chat
-AZURE_EMBEDDING_API_VERSION=2024-12-01-preview # Embeddings (DIFFERENT!)
-```
-
-### Issue: Low accuracy on domain-specific entities
-
-**Solution**: 
-1. Increase unlabeled corpus size (200+ sentences recommended)
-2. Adjust `rho` hyperparameter (lower = more features):
-   ```python
-   trf_set = trf_extractor.compute_mutual_information(
-       corpus, annotations, entity_types, rho=2.0
-   )
-   ```
-
----
-
-## Contributing
-
-Contributions welcome! Please:
-
-1. Fork the repository
-2. Create feature branch: `git checkout -b feature/my-improvement`
-3. Commit changes: `git commit -m "Add feature description"`
-4. Push to branch: `git push origin feature/my-improvement`
-5. Open Pull Request
-
----
-
-## Citation
-
-If you use this framework in your research, please cite:
-
-```bibtex
-@software{agentic_ner_2025,
-  title={Intelligent Multi-Agent NER System using LLM Orchestration},
-  author={Your Name},
-  year={2025},
-  url={https://github.com/yourusername/agentic-ner},
-  note={Azure OpenAI, LangGraph-based framework}
-}
-```
-
----
-
-## License
-
-This project is licensed under the MIT License - see [LICENSE](LICENSE) file for details.
-
----
-
-## References
-
-### Research Papers
-- Wei et al. (2023). "Self-Consistency Improves Chain of Thought Reasoning in Language Models"
-- Brown et al. (2020). "Language Models are Few-Shot Learners" (GPT-3)
-- Church & Hanks (1989). "Word Association Norms, Mutual Information, and Lexicography"
-
-### Documentation
-- [Azure OpenAI Docs](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/)
-- [LangGraph Documentation](https://langchain-ai.github.io/langgraph/)
-- [LangChain Documentation](https://python.langchain.com/)
-
----
-
-<div align="center">
-
-**Built with ❤️ using LangGraph, Azure OpenAI, and LangChain**
-
-⭐ If you find this useful, please star the repository!
-
-</div>
